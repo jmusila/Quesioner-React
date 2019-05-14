@@ -17,6 +17,10 @@
     "url": "https://github.com/jonathanmusila/Quesioner-React/issues"
   },
   "homepage": "https://github.com/jonathanmusila/Quesioner-React#readme",
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.15.3"
+  },
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
