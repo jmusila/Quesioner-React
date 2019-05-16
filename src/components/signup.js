@@ -79,7 +79,6 @@ class SignUp extends Component {
                     </FormGroup>
                 </Form>
                     <Button color="primary" onClick={this.addUser.bind(this)}>SignUp</Button>{' '}
-                    <Button color="secondary" >Cancel</Button> 
             </div>
          );
     }

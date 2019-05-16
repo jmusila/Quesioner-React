@@ -10,6 +10,7 @@ class App extends Component {
         return(
             <Layout>
                 <BrowserRouter className="App">
+                    <Route path='/' exact component={Home}></Route>
                     <Route path='/index' exact component={Home}/>
                     <Route path='/signup' exact component={SignUp}/>
                     <Route path='/signin' exact component={SignIn}/>
