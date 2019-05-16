@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
 import { Input, FormGroup, Label, Form, Button } from 'reactstrap';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            loginUser:{
+            loginUser: {
                 email: '',
                 password: ''
-            }
+            },
+            isLoggedIn: false
          }
     }
 
     signinUser(){
-        axios.post('https://my-postgres-questioner-v2-api.herokuapp.com/api/v2/auth/login', this.state.loginUser).then((response) =>{
-            localStorage.setItem('token', response.data['access_token']);
-            let { user } = this.state
-            
-            user.push(response.data)
-            this.setState({ user })
-        });
+        axios.post('https://my-postgres-questioner-v2-api.herokuapp.com/api/v2/auth/login', this.state.loginUser)
+            .then((response) => {
+                if (response.status === 200) {
+                    const token = response.data['access_token'];
+                    localStorage.setItem('token', token);
+                    this.setState({ isLoggedIn: true }, () => {
+                        const { isLoggedIn } = this.state;
+                        const { history } = this.props;
+                        if(isLoggedIn) {
+                            history.push('/');
+                        }
+                    })
+                }
+            });
+    }
+
+    render() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            return <Redirect to="/" />
         }
-    render() { 
+
         return ( 
             <div className="SingIn container">
                 <Form>
@@ -43,7 +58,7 @@ class SignIn extends Component {
                         }}/> 
                     </FormGroup>
                 </Form>
-                    <Button color="primary" onClick={this.signinUser.bind(this)}>SignUp</Button>{' '}
+                <Button color="primary" onClick={this.signinUser.bind(this)}>SignIn</Button>{' '}
             </div>
          );
     }

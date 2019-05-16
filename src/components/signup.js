@@ -20,12 +20,12 @@ class SignUp extends Component {
     addUser(){
     axios.post('https://my-postgres-questioner-v2-api.herokuapp.com/api/v2/auth/signup', this.state.newUserData).then((response) =>{
         let { users } = this.state
-
+        console.log(response.data)
         users.push(response.data)
         this.setState({ users })
     });
     }
-    render() { 
+    render() {
         return ( 
             <div className="SignUp container">
                 <Form>

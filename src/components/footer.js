@@ -4,7 +4,7 @@ const Footer = () => {
     return ( 
         <div>
             <hr/>
-            <h2>jonathan.com</h2>
+            <h4>jonathan.com</h4>
         </div>
      );
 }
