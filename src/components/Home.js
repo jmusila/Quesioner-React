@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "./Home.css";
 
 class Home extends Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class Home extends Component {
           this.setState({
             meetups: response.data.data
           })
-          console.log(this.state.meetups)
         }
         );
       }
