@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./Home.css";
+import { Container, Col, Row } from 'reactstrap';
 
 class Home extends Component {
     constructor(props) {
@@ -20,19 +21,21 @@ class Home extends Component {
       render(){
         let meetups = this.state.meetups.map((meetup) =>{
           return(
-            <div>
-                <h2>{meetup.title}</h2>
-                <p>{meetup.meetup_id}</p>
-                <p>{meetup.location}</p>
-                <p>{meetup.happeningOn}</p>
-                <p>{meetup.tags}</p>
-                <p>{meetup.time_added}</p>
-            </div>
+            <Container>
+                <div className="card">
+                    <h2><b>Title:</b> {meetup.title}</h2>
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" width="100%" height="350"/>
+                    <p><b>Location:</b> {meetup.location}</p>
+                    <p><b>Date Happening:</b> {meetup.happeningOn}</p>
+                    <p><b>Tags:</b> {meetup.tags}</p>
+                    <p><b>Time Added</b> {meetup.time_added}</p>
+                </div>      
+            </Container>
 
           );
         });
         return(
-            <div className="Home container">{meetups}</div>
+            <Col sm="12"><Row>{meetups}</Row></Col>
         );
     }
 }
