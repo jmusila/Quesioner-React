@@ -82,22 +82,3 @@ it('should test onChange function', () => {
     expect(wrapper.length).toBe(1);
 });
 
-
-it('should test onClick function', () => {
-    const state = {
-        newUserData: {
-            firstname: '',
-            lastname: '',
-            email: '',
-            phoneNumber: '',
-            username: '',
-            password: ''
-        }
-    }
-    const wrapper = shallow(<RegisterComponent />);
-    wrapper.setState(state)
-    wrapper.find('Button')
-        .dive()
-        .simulate('click');
-    expect(wrapper.state().addUser).toBe(1);
-})
