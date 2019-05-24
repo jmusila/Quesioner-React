@@ -37,7 +37,7 @@
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.3.1",
@@ -46,16 +46,16 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "enzyme-to-json": "^3.3.5",
-    "express": "^4.16.4",
+    "express": "^4.17.0",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "react-router-dom": "^5.0.0",
     "reactstrap": "^8.0.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.31.0",
+    "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.4.1"
   },
   "jest": {
     "setupFiles": [
