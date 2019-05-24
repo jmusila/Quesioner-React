@@ -54,11 +54,12 @@ class SignIn extends Component {
                         <Input id="password" type="password" value={this.state.loginUser.password} onChange={(e) => {
                         let { loginUser } = this.state;
                         loginUser.password = e.target.value;
+                        console.log(loginUser.password)
                         this.setState({ loginUser })
                         }}/> 
                     </FormGroup>
                 </Form>
-                <Button color="primary" onClick={this.signinUser.bind(this)}>SignIn</Button>{' '}
+                <Button id="submit" color="primary" onClick={this.signinUser.bind(this)}>SignIn</Button>{' '}
             </div>
          );
     }
