@@ -1,8 +1,7 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
+import homeReducer from './homeReducer';
 
 
-const rootReducer = combineReducers({
-
+export default combineReducers({
+    meetups: homeReducer
 });
-
-export default rootReducer;
