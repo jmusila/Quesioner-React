@@ -23,6 +23,6 @@ export const fetchActions = () => dispatch => {
         .then(response => {
             dispatch(fetchSuccess(response.data.data))
         })
-        .then(error => dispatch(fetchFailure(error)));
+        .catch(error => dispatch(fetchFailure(error)));
 };
 
