@@ -14,7 +14,7 @@ class Home extends Component {
     let meetups = this.props.meetups.map(meetup => {
       return (
         <Container>
-          <div className="card">
+          <div className="card" key={meetup.meetup_id}>
             <h2><b>Title:</b> {meetup.title}</h2>
             <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" width="100%" height="350" />
             <p><b>Location:</b> {meetup.location}</p>

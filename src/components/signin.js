@@ -1,35 +1,42 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Input, FormGroup, Label, Form, Button } from 'reactstrap';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import { loginActions } from '../actions/loginActions';
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             loginUser: {
                 email: '',
                 password: ''
             },
             isLoggedIn: false
-         }
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(e) {
+        const { name, value } = e.target;
+        const { loginUser } = this.state;
+        loginUser[name] = value;
+        this.setState({ loginUser });
     }
 
-    signinUser(){
-        axios.post('https://my-postgres-questioner-v2-api.herokuapp.com/api/v2/auth/login', this.state.loginUser)
-            .then((response) => {
-                if (response.status === 200) {
-                    const token = response.data['access_token'];
-                    localStorage.setItem('token', token);
-                    this.setState({ isLoggedIn: true }, () => {
-                        const { isLoggedIn } = this.state;
-                        const { history } = this.props;
-                        if(isLoggedIn) {
-                            history.push('/');
-                        }
-                    })
-                }
-            });
+    handleSubmit(e) {
+        e.preventDefault();
+        const { loginUser } = this.state;
+        const { loginActions, history } = this.props;
+        loginActions(loginUser).then(data => {
+            if (data.data) {
+                const { access_token } = data.data;
+                localStorage.setItem('token', access_token);
+                history.push('/');
+            }
+        });
     }
 
     render() {
@@ -38,31 +45,26 @@ class SignIn extends Component {
             return <Redirect to="/" />
         }
 
-        return ( 
+        return (
             <div className="SingIn container">
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="email">Email</Label>
-                        <Input id="email" type="email" value={this.state.loginUser.email} onChange={(e) => {
-                        let { loginUser } = this.state;
-                        loginUser.email = e.target.value;
-                        this.setState({ loginUser })
-                        }}/>
+                        <Input name="email" type="email" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
-                        <Input id="password" type="password" value={this.state.loginUser.password} onChange={(e) => {
-                        let { loginUser } = this.state;
-                        loginUser.password = e.target.value;
-                        console.log(loginUser.password)
-                        this.setState({ loginUser })
-                        }}/> 
+                        <Input name="password" type="password" onChange={this.handleChange} />
                     </FormGroup>
                 </Form>
-                <Button id="submit" color="primary" onClick={this.signinUser.bind(this)}>SignIn</Button>{' '}
+                <Button type="submit" onClick={this.handleSubmit} color="primary">SignIn</Button>
             </div>
-         );
+        );
     }
 }
- 
-export default SignIn;
+
+SignIn.propTypes = {
+    loginActions: PropTypes.func.isRequired
+};
+
+export default connect(null, { loginActions })(SignIn);
