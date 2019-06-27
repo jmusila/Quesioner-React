@@ -1,6 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 import RegisterComponent from '../src/components/signup';
+
+const mockStore = configureMockStore();
+
+const store = mockStore({});
 
 it('should test onChange function', () => {
     const event = {
@@ -8,7 +13,7 @@ it('should test onChange function', () => {
             value: 'hfklfhhsfhdf'
         }
     }
-    const wrapper = shallow(<RegisterComponent />);
+    const wrapper = shallow(<RegisterComponent store={store} />);
     wrapper.addUser;
     wrapper.find('Form')
         .dive()
@@ -24,7 +29,7 @@ it('should test onChange function', () => {
             value: 'hfklfhhsfhdf'
         }
     }
-    const wrapper = shallow(<RegisterComponent />);
+    const wrapper = shallow(<RegisterComponent store={store} />);
     wrapper.addUser;
     wrapper.find('Form')
         .dive()
@@ -40,7 +45,7 @@ it('should test onChange function', () => {
             value: 'hfklfhhsfhdf'
         }
     }
-    const wrapper = shallow(<RegisterComponent />);
+    const wrapper = shallow(<RegisterComponent store={store} />);
     wrapper.addUser;
     wrapper.find('Form')
         .dive()
@@ -56,7 +61,7 @@ it('should test onChange function', () => {
             value: 'mme@andela.com'
         }
     }
-    const wrapper = shallow(<RegisterComponent />);
+    const wrapper = shallow(<RegisterComponent store={store} />);
     wrapper.addUser;
     wrapper.find('Form')
         .dive()
@@ -72,7 +77,7 @@ it('should test onChange function', () => {
             value: 'hhhhvjfhefv'
         }
     }
-    const wrapper = shallow(<RegisterComponent />);
+    const wrapper = shallow(<RegisterComponent store={store} />);
     wrapper.addUser;
     wrapper.find('Form')
         .dive()

@@ -1,7 +1,12 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 import LoginComponent from '../src/components/signin';
+
+const mockStore = configureMockStore();
+
+const store = mockStore({});
 
 it('should test onChange function', () => {
     const event = {
@@ -9,7 +14,7 @@ it('should test onChange function', () => {
             value: 'hfklfhhsfhdf'
         }
     }
-    const wrapper = shallow(<LoginComponent />);
+    const wrapper = shallow(<LoginComponent store={store}/>);
     wrapper.signinUser;
     wrapper.find('Form')
         .dive()
@@ -26,7 +31,7 @@ it('should test onChange function email', () => {
             value: 'meme@andela.com'
         }
     }
-    const wrapper = shallow(<LoginComponent />);
+    const wrapper = shallow(<LoginComponent store={store}/>);
     wrapper.signinUser;
     wrapper.find('Form')
         .dive()
