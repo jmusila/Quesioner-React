@@ -54,7 +54,7 @@ class SignIn extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
-                        <Input name="password" type="password" onChange={this.handleChange} />
+                        <Input id="password" name="password" type="password" onChange={this.handleChange} />
                     </FormGroup>
                 </Form>
                 <Button type="submit" onClick={this.handleSubmit} color="primary">SignIn</Button>

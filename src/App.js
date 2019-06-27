@@ -1,17 +1,15 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { Component } from 'react';
 import Home from "./components/Home";
 import SignUp from './components/signup';
 import SignIn from './components/signin';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Layout from './components/layout';
 import Navbar from './components/Navbar';
-import store from './store';
 
-function App() {
+class App extends Component {
+    render() {
 
-    return (
-        <Provider store={store}>
+        return (
             <Layout>
                 <BrowserRouter>
                     <div className="navbar">
@@ -28,7 +26,7 @@ function App() {
                     <Route path="/signin" exact component={SignIn} />
                 </BrowserRouter>
             </Layout>
-        </Provider>
-    );
+        );
+    }
 }
-export default App; 
+export default App;

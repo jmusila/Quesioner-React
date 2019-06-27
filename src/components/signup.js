@@ -42,7 +42,7 @@ class SignUp extends Component {
                 <Form>
                     <FormGroup>
                         <Label for="firstname">Firstname</Label>
-                        <Input name="firstname" onChange={this.handleChange} />
+                        <Input id="firstname" name="firstname" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="lastname">Lastname</Label>
