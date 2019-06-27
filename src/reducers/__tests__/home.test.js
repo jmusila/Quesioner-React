@@ -3,7 +3,11 @@ import * as types from '../../constants/homeTypes';
 
 describe('Fetch meetups reducer tests', () => {
     it('should have the initial state', () => {
-        expect(homeReducer(initialState, {})).toBe(initialState);
+        expect(homeReducer(initialState, {})).toEqual({
+            data: [],
+            error: null,
+            loading: false
+        });
     });
     it('should show loading when FETCH_MEETUPS is dispatched', () => {
         expect(homeReducer(initialState,

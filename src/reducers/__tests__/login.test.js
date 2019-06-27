@@ -3,7 +3,12 @@ import * as types from '../../constants/loginTypes';
 
 describe('Login reducer tests', () => {
     it('should have an initial state', () => {
-        expect(loginReducer(initialState, {})).toBe(initialState);
+        expect(loginReducer(initialState, {}
+        )).toEqual({
+            data: {},
+            error: null,
+            loading: false
+        });
     })
     it('should show is loading on login submit', () => {
         expect(loginReducer(null, {
