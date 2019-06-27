@@ -4,7 +4,7 @@ import axios from 'axios';
 const serverUrl = "https://my-postgres-questioner-v2-api.herokuapp.com/api/v2"
 
 export const fecthRequest = () => ({
-    type: tpyes.FETCH_MEETUPS
+    type: types.FETCH_MEETUPS
 });
 
 export const fetchSuccess = (meetups) => ({
