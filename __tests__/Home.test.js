@@ -1,36 +1,29 @@
-import configureMockStore from 'redux-mock-store';
 import React from "react";
 import { shallow } from "enzyme";
 import axios from "axios";
-
+import configureMockStore from 'redux-mock-store';
 import Home from "../src/components/Home";
 
+jest.mock("axios");
 const mockStore = configureMockStore();
 
-const store = mockStore({});
-
-jest.mock("axios");
-
-describe("Home component", () => {
+describe('Test home Component', () => {
   let store;
   let wrapper;
+  const getSpy = jest.spyOn(axios, "get");
 
   beforeEach(() => {
     store = mockStore({});
     wrapper = shallow(<Home store={store} />);
   });
-  const getSpy = jest.spyOn(axios, "get");
-
-  it("renders without crashing", () => {
+  it('should render without crashing', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("renders with correct state", () => {
-    expect(wrapper).state("meetups")).toEqual([]);
-});
-
-it("mock fetch list of meetups from api", () => {
-  expect(getSpy).toBeCalled();
-  getSpy.mockClear();
-});
-});
+  test("renders with correct state", () => {
+    expect(wrapper.state("meetups")).toEqual([]);
+  });
+  test("mock fetch list of meetups from api", () => {
+    expect(getSpy).toBeCalled();
+    getSpy.mockClear();
+  });
+})
