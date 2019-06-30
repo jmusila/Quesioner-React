@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Home /> component renders without crashing 1`] = `ShallowWrapper {}`;
-
-exports[`Test home Component should render without crashing 1`] = `undefined`;
