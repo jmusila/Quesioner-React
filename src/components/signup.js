@@ -1,87 +1,74 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Input, FormGroup, Label, Form, Button } from 'reactstrap';
 import axios from 'axios';
+import { registerActions } from '../actions/registerActions';
 
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            newUserData:{
+        this.state = {
+            newUserData: {
                 firstname: '',
                 lastname: '',
                 email: '',
                 phoneNumber: '',
                 username: '',
                 password: ''
-              }
-         }
+            }
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
-    addUser(){
-    axios.post('https://my-postgres-questioner-v2-api.herokuapp.com/api/v2/auth/signup', this.state.newUserData).then((response) =>{
-        let { users } = this.state
-        console.log(response.data)
-        users.push(response.data)
-        this.setState({ users })
-    });
+
+    handleChange(e) {
+        const { name, value } = e.target;
+        const { newUserData } = this.state;
+        newUserData[name] = value;
+        this.setState({ newUserData });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const { newUserData } = this.state;
+        const { registerActions } = this.props;
+        registerActions(newUserData)
     }
     render() {
-        return ( 
+        return (
             <div className="SignUp container">
                 <Form>
                     <FormGroup>
                         <Label for="firstname">Firstname</Label>
-                        <Input id="firstname" value={this.state.newUserData.firstname} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.firstname = e.target.value;
-                        this.setState({ newUserData })
-                        }}/>
+                        <Input id="firstname" name="firstname" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="lastname">Lastname</Label>
-                        <Input id="lastname" value={this.state.newUserData.lastname} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.lastname = e.target.value;
-                        this.setState({ newUserData })
-                        }}/> 
+                        <Input name="lastname" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="email">Email</Label>
-                        <Input id="email"  value={this.state.newUserData.email} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.email = e.target.value;
-                        this.setState({ newUserData })
-                        }}/>
+                        <Input name="email" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="phonenumber">Phonenumber</Label>
-                        <Input id="phoneNumber"  value={this.state.newUserData.phoneNumber} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.phoneNumber = e.target.value;
-                        this.setState({ newUserData })
-                        }}/>
+                        <Input name="phoneNumber" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="username">Username</Label>
-                        <Input id="username"  value={this.state.newUserData.username} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.username = e.target.value;
-                        this.setState({ newUserData })
-                        }}/>
+                        <Input name="username" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
-                        <Input id="password" type="password" value={this.state.newUserData.password} onChange={(e) => {
-                        let { newUserData } = this.state;
-                        newUserData.password = e.target.value;
-                        this.setState({ newUserData })
-                        }}/>
+                        <Input name="password" type="password" onChange={this.handleChange} />
                     </FormGroup>
                 </Form>
-                    <Button color="primary" onClick={this.addUser.bind(this)}>SignUp</Button>{' '}
+                <Button type="submit" color="primary" onClick={this.handleSubmit}>SignUp</Button>
             </div>
-         );
+        );
     }
 }
- 
-export default SignUp;
+
+export default connect(null, { registerActions })(SignUp);
