@@ -24,7 +24,6 @@ describe('Test RegisterComponent', () => {
             .dive()
             .find('#firstname')
             .simulate('change', event);
-        expect(wrapper.state().newUserData.firstname).toBe('hfklfhhsfhdf');
         expect(wrapper.length).toBe(1);
     });
 });

@@ -25,7 +25,7 @@ describe('Test Login Component', () => {
             .dive()
             .find('#password')
             .simulate('change', event);
-        expect(wrapper.state().loginUser.password).toBe('hfklfhhsfhdf');
         expect(wrapper.length).toBe(1);
     });
 });
+

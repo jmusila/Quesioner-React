@@ -7,7 +7,7 @@ import { fetchActions } from '../actions/homeActions';
 
 class Home extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchActions();
   }
   render() {
