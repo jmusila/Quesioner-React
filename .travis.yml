@@ -7,7 +7,7 @@ cache:
 script:
   - npm test
   - npm run build
-  - npm coveralls
+  - npm run-script coveralls
 jobs:
   include:
     - stage: Produce Coverage
